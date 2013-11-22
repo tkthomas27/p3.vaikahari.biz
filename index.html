@@ -20,37 +20,97 @@
 
 	<body>
 
+<div> 
+<form action=""></form>
+	<input type="radio" id="radioapple" name="radio" /><label for="radioapple">Apple</label>
+	<input type="radio" id="radiogoogle" name="radio" /><label for="radiogoogle">Google</label>
+	<input type="radio" id="radiomicrosoft" name="radio" /><label for="radiomicrosoft">Microsoft</label>
+	</form>
+	<br>
+	<button>Calculate</button><br><br>
 
-	<ul id="sortable">
+</div>
+
+<br><br>
+
+	<ul id="sortablewacc">
 		<li>
-			<div id="accordionone">
+			<div id="accordionwaccvar">
 				<h3>WACC Variables</h3>
-				<div></div>
+				<div>
+					<table>
+						<tr>
+							<th>Component</th>
+							<th>No of Shares</th>
+							<th>Price</th>
+							<th>Component Total</th>
+							<th>Weight</th>
+						</tr>
+						<tr>
+							<td>Common Stock</td>
+							<td><input type="text" id="csshares"></td>
+							<td><input type="text" id="csprice"></td>
+							<td><input type="text" id="csct"></td>
+							<td id='csctweight'></td>
+						</tr>
+						<tr>
+							<td>Preferred Stock</td>
+							<td><input type="text" id="psshares"></td>
+							<td><input type="text" id="psprice"></td>
+							<td><input type="text" id='psct'></td>
+							<td id='psctweight'></td>
+						</tr>
+						<tr>
+							<td>Bonds</td>
+							<td><input type="text" id="bshares"></td>
+							<td><input type="text" id="bprice"></td>
+							<td><input type="text" id='bct'></td>
+							<td id='bctweight'></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td>MVIC:</td>
+							<td id='ctt'></td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
 			</div>
 		</li>
-		<li>
-			<div id="accordionsix">
-				<h3>ICC Variables</h3>
-				<div></div>
-			</div>
-		</li>
-		<li>
-			<div id="accordiontwo">
+			<div id="accordionwacc">
 				<h3>WACC</h3>
 			</div>
 		</li>
+	</ul>
+
+
+	<ul id="sortableicc">
 		<li>
-			<div id="accordionthree">
+			<div id="accordioniccvar">
+				<h3>ICC Variables</h3>
+				<div>
+					<form action="">
+						Market Equity (M_t)<input type="text"><br>
+						Perpetual Growth Rate (gamma) <input type="text"><br>
+						Expected Earnings t+1 <input type="text"> &nbsp t+2<input type="text"> &nbsp t+3<input type="text"> &nbsp t+4<input type="text"> <br>
+						Expected Dividends t+1 <input type="text">
+					</form>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div id="accordioniccoj">
 				<h3>ICC OJ</h3>
 			</div>
 		</li>
 		<li>
-			<div id="accordionfour">
+			<div id="accordioniccmpeg">
 				<h3>ICC MPEG</h3>
 			</div>
 		</li>
 		<li>
-			<div id="accordionfive">
+			<div id="accordioniccg">
 				<h3>ICC Gordon</h3>
 			</div>
 		</li>
