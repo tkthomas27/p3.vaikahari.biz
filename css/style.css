@@ -1,0 +1,11 @@
+.sortable{
+	list-style-type: none;
+}
+
+#wrap{
+	padding:50px;
+}
+
+.equation{
+	color:red;
+}

@@ -11,9 +11,11 @@
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<link rel="stylesheet" href="css/style.css" type="text/css">
+		<link rel="stylesheet" href="css/dark-hive/jquery-ui-1.10.3.custom.css" type="text/css">
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 			<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	</head>
@@ -33,10 +35,12 @@
 
 <br><br>
 
-	<ul id="sortablewacc">
+	<div id='wrap'>
+	<ul id="sortablewacc" class="sortable">
 		<li>
-			<div id="accordionwaccvar">
+			<div id="accordionwaccvar" class="accordion">
 				<h3>WACC Variables</h3>
+
 				<div>
 					<table>
 						<tr>
@@ -78,16 +82,19 @@
 				</div>
 			</div>
 		</li>
-			<div id="accordionwacc">
+			<div id="accordionwacc" class="accordion">
 				<h3>WACC</h3>
+				<div>
+					<span id='wacc'></span>
+				</div>
 			</div>
 		</li>
 	</ul>
 
 
-	<ul id="sortableicc">
+	<ul id="sortableicc" class="sortable">
 		<li>
-			<div id="accordioniccvar">
+			<div id="accordioniccvar" class="accordion">
 				<h3>ICC Variables</h3>
 				<div>
 					<form action="">
@@ -100,22 +107,29 @@
 			</div>
 		</li>
 		<li>
-			<div id="accordioniccoj">
+			<div id="accordioniccoj" class="accordion">
 				<h3>ICC OJ</h3>
+				<div class='equation'>
+					
+					\(R=A+\sqrt{A^{2}+\frac{E_{t}[E_{t+1}]}{M_t}\times(g-(\gamma-1))}\)
+					<br><br>
+					\(A=0.5\left((\gamma-1)+\frac{E_(t)[D_{t+1}]}{M_{t}}\right)\)
+					<br>
+				</div>
 			</div>
 		</li>
 		<li>
-			<div id="accordioniccmpeg">
+			<div id="accordioniccmpeg" class="accordion">
 				<h3>ICC MPEG</h3>
 			</div>
 		</li>
 		<li>
-			<div id="accordioniccg">
+			<div id="accordioniccg" class="accordion">
 				<h3>ICC Gordon</h3>
 			</div>
 		</li>
 	</ul>
-
+</div>
 
 
 	<script src="js/icc-calc.js"></script>

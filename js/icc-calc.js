@@ -1,7 +1,6 @@
 $( document ).ready(function() {
 
 
-
 //***************************************
 //form
 //***************************************
@@ -9,46 +8,32 @@ $( document ).ready(function() {
 
 	// set sections to be accordions; collapsible means they can all be closed at once
 	$(function() {
-		$( "#accordioniccvar" ).accordion({
-			collapsible: true
+
+		// set major divs as accordions; all accordions are collapsible
+		$( ".accordion" ).accordion({
+			collapsible: true,
+			heightStyle: "content"
 		});
-		$( "#accordionwaccvar" ).accordion({
-			collapsible: true
-		});
-		$( "#accordionwacc" ).accordion({
-			collapsible: true
-		});
-		$( "#accordioniccoj" ).accordion({
-			collapsible: true
-		});
-		$( "#accordioniccmpeg" ).accordion({
-			collapsible: true
-		});
-		$( "#accordioniccg" ).accordion({
-			collapsible: true
-		});
+
 	});
 
 	// allow accordions to be sorted within their sections; placeholder displays a yellow block were an accordion can be dropped
 	$(function() {
-		$( "#sortablewacc" ).sortable({
+
+		//set major divs to sortable; leave a yellow placeholder for positions
+		$( ".sortable" ).sortable({
 			placeholder: "ui-state-highlight",
 		});
 
-		$( "#sortablewacc" ).disableSelection();
+		$( ".sortable" ).disableSelection();
 
-
-		$( "#sortableicc" ).sortable({
-			placeholder: "ui-state-highlight",
-
-		});
-
-		$( "#sortableicc" ).disableSelection();
 	});
 
-  $(function() {
-    $( "#radio" ).buttonset();
-  });
+	$(function() {
+
+		$( "#radio" ).buttonset();
+
+	});
 
 //***************************************
 //functionality
