@@ -39,15 +39,15 @@
 	<ul id="sortablewacc" class="sortable">
 		<li>
 			<div id="accordionwaccvar" class="accordion">
-				<h3>WACC Variables</h3>
-
+				<h3>Traditional Cost of Capital Variables</h3>
 				<div>
 					<table>
 						<tr>
 							<th>Component</th>
 							<th>No of Shares</th>
-							<th>Price</th>
+							<th>Price/FV</th>
 							<th>Component Total</th>
+							<th>Weight Var</th>
 							<th>Weight</th>
 						</tr>
 						<tr>
@@ -55,6 +55,7 @@
 							<td><input type="text" id="csshares"></td>
 							<td><input type="text" id="csprice"></td>
 							<td><input type="text" id="csct"></td>
+							<td> \(W_e\) </td>
 							<td id='csctweight'></td>
 						</tr>
 						<tr>
@@ -62,6 +63,7 @@
 							<td><input type="text" id="psshares"></td>
 							<td><input type="text" id="psprice"></td>
 							<td><input type="text" id='psct'></td>
+							<td> \(W_p\) </td>
 							<td id='psctweight'></td>
 						</tr>
 						<tr>
@@ -69,6 +71,7 @@
 							<td><input type="text" id="bshares"></td>
 							<td><input type="text" id="bprice"></td>
 							<td><input type="text" id='bct'></td>
+							<td> \(W_d\) </td>
 							<td id='bctweight'></td>
 						</tr>
 						<tr>
@@ -79,13 +82,46 @@
 							<td></td>
 						</tr>
 					</table>
+					<br><br>
+					Risk Free Rate (\(R_f\))<input type="text"><br>
+					Equity Risk Premium (\(RP_e\))<input type="text"><br>
+					Size Risk Premium (\(RP_s\))<input type="text"><br>
+					Size Risk Premium (\(RP_s\))<input type="text"><br>
+					Industry Risk Premium (\(RP_i\))<input type="text"><br>
+					Company Specific Risk Premium (\(RP_u\))<input type="text"><br>
+					Beta (\(\beta\))<input type="text"><br>
+					Cumulative, Nonparticipating Dividend (\(CND\))<input type="text"><br>
+					Tax Rate(\(\tau\))<input type="text"><br>
 				</div>
 			</div>
 		</li>
-			<div id="accordionwacc" class="accordion">
-				<h3>WACC</h3>
+			<div id="accordioncoe" class="accordion">
+				<h3>Cost of Equities and Debt</h3>
 				<div>
-					<span id='wacc'></span>
+					Build Up Model Cost of Equity: <br>
+					\( k_e= R_f+RP_e+RP_s+RP_u \) <br>
+					= <input type="text"><br><br>
+					Capital Asset Model Cost of Equity: <br>
+					\( k_e= R_f+\beta(RP_e)+RP_s+RP_u \) <br>
+					= <input type="text"><br><br>
+					Cost of Preferred Equity: <br>
+					\(k_p = CND \div \text{Price of Preferred Stock} \) <br>
+					= <input type="text"><br><br>
+					Cost of Debt: <br>
+					\( k_{d(pt)}=1-FV \) <br>
+					= <input type="text"><br>
+				</div>
+			</div>
+		</li>
+		</li>
+			<div id="accordionwacc" class="accordion">
+				<h3>Weighted Average Cost of Capital</h3>
+				<div>
+					\(WACC=(k_e \times W_e)+(k_p \times W_p) + (k_{d(pt)}[1-\tau]\times W_d )\) <br><br>
+					WACC: Build Up Model <br>
+					= <input type="text"><br><br>
+					WACC: CAPM <br>
+					= <input type="text"><br>
 				</div>
 			</div>
 		</li>
@@ -95,37 +131,31 @@
 	<ul id="sortableicc" class="sortable">
 		<li>
 			<div id="accordioniccvar" class="accordion">
-				<h3>ICC Variables</h3>
+				<h3>Implied Cost of Capital Variables</h3>
 				<div>
 					<form action="">
-						Market Equity (M_t)<input type="text"><br>
-						Perpetual Growth Rate (gamma) <input type="text"><br>
-						Expected Earnings t+1 <input type="text"> &nbsp t+2<input type="text"> &nbsp t+3<input type="text"> &nbsp t+4<input type="text"> <br>
-						Expected Dividends t+1 <input type="text">
+						Market Equity (\(M_t\))<input type="text"><br>
+						Perpetual Growth Rate (\(\gamma\)) <input type="text"><br>
+						Expected Earnings (\( E_{t}[E_{t+1}]) \) <input type="text"> <br>
+						(\( E_{t}[E_{t+2}]) \)<input type="text"><br>
+						(\( E_{t}[E_{t+3}]) \)<input type="text"><br>
+						(\( E_{t}[E_{t+4}]) \)<input type="text"><br>
+						Expected Dividends (\( E_{t}[D_{t+1}]) \) <input type="text">
 					</form>
 				</div>
 			</div>
 		</li>
 		<li>
 			<div id="accordioniccoj" class="accordion">
-				<h3>ICC OJ</h3>
+				<h3>Implied Cost of Capital: Ohlson-Juettner Model</h3>
 				<div class='equation'>
-					
-					\(R=A+\sqrt{A^{2}+\frac{E_{t}[E_{t+1}]}{M_t}\times(g-(\gamma-1))}\)
+					\(A=0.5\left((\gamma-1)+\frac{E_{t}[D_{t+1}]}{M_{t}}\right)\) = <input type="text">
 					<br><br>
-					\(A=0.5\left((\gamma-1)+\frac{E_(t)[D_{t+1}]}{M_{t}}\right)\)
-					<br>
+					\(g=0.5\left(\frac{E_{t}[E_{t+3}]-E_{t}[E_{t+2}]}{E_{t}[E_{t+2}]}+\frac{E_{t}[E_{t+5}]-E_{t}[E_{t+4}]}{E_{t}[E_{t+4}]}\right)\) = <input type="text">
+					<br><br>
+					\(ICC=A+\sqrt{A^{2}+\frac{E_{t}[E_{t+1}]}{M_t}\times(g-(\gamma-1))}\) <br>
+					= <input type="text"><br><br>
 				</div>
-			</div>
-		</li>
-		<li>
-			<div id="accordioniccmpeg" class="accordion">
-				<h3>ICC MPEG</h3>
-			</div>
-		</li>
-		<li>
-			<div id="accordioniccg" class="accordion">
-				<h3>ICC Gordon</h3>
 			</div>
 		</li>
 	</ul>

@@ -9,3 +9,8 @@
 .equation{
 	color:red;
 }
+
+table,th,td
+{
+border:1px solid white;
+}
