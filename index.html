@@ -29,7 +29,7 @@
 	<input type="radio" id="radiomicrosoft" name="radio" /><label for="radiomicrosoft">Microsoft</label>
 	</form>
 	<br>
-	<button>Calculate</button><br><br>
+	<button>Custome Calculate</button><br><br>
 
 </div>
 
@@ -44,72 +44,55 @@
 					<table>
 						<tr>
 							<th>Component</th>
-							<th>No of Shares</th>
-							<th>Price/FV</th>
 							<th>Component Total</th>
 							<th>Weight Var</th>
 							<th>Weight</th>
 						</tr>
 						<tr>
 							<td>Common Stock</td>
-							<td><input type="text" id="csshares"></td>
-							<td><input type="text" id="csprice"></td>
 							<td><input type="text" id="csct"></td>
-							<td> \(W_e\) </td>
+							<td> \(W_e\) = </td>
 							<td id='csctweight'></td>
 						</tr>
 						<tr>
 							<td>Preferred Stock</td>
-							<td><input type="text" id="psshares"></td>
-							<td><input type="text" id="psprice"></td>
 							<td><input type="text" id='psct'></td>
-							<td> \(W_p\) </td>
+							<td> \(W_p\) = </td>
 							<td id='psctweight'></td>
 						</tr>
 						<tr>
 							<td>Bonds</td>
-							<td><input type="text" id="bshares"></td>
-							<td><input type="text" id="bprice"></td>
 							<td><input type="text" id='bct'></td>
-							<td> \(W_d\) </td>
+							<td> \(W_d\) = </td>
 							<td id='bctweight'></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td>MVIC:</td>
-							<td id='ctt'></td>
-							<td></td>
 						</tr>
 					</table>
 					<br><br>
-					Risk Free Rate (\(R_f\))<input type="text"><br>
-					Equity Risk Premium (\(RP_e\))<input type="text"><br>
-					Size Risk Premium (\(RP_s\))<input type="text"><br>
-					Size Risk Premium (\(RP_s\))<input type="text"><br>
-					Industry Risk Premium (\(RP_i\))<input type="text"><br>
-					Company Specific Risk Premium (\(RP_u\))<input type="text"><br>
-					Beta (\(\beta\))<input type="text"><br>
-					Cumulative, Nonparticipating Dividend (\(CND\))<input type="text"><br>
-					Tax Rate(\(\tau\))<input type="text"><br>
+					Risk Free Rate (\(R_f\)): <input type="text" id='rf' maxlength='16'><br>
+					Equity Risk Premium (\(RP_e\)): <input type="text" id='rpe' maxlength='16'><br>
+					Size Risk Premium (\(RP_s\)): <input type="text" id='rps' maxlength='16'><br>
+					Industry Risk Premium (\(RP_i\)): <input type="text" id='rpi' maxlength='16'><br>
+					Company Specific Risk Premium (\(RP_u\)): <input type="text" id='rpu' maxlength='16'><br>
+					Beta (\(\beta\)): <input type="text" id='beta' maxlength='16'><br>
+					Cumulative, Nonparticipating Dividend (\(D_c\)): <input type="text" id='cnd' maxlength='16'><br>
+					Tax Rate(\(\tau\)): <input type="text" id='tax' maxlength='16'><br>
+					Price of Preferred Stock (\(P_{ps})\): <input type="text" id='pps' maxlength='16'><br>
+					Cost of Debt from Bond Yield to Maturity (\(k_{d(pt)})\): <input type="text" id='kdpt' maxlength='16'><br>
 				</div>
 			</div>
 		</li>
 			<div id="accordioncoe" class="accordion">
-				<h3>Cost of Equities and Debt</h3>
+				<h3>Cost of Equities</h3>
 				<div>
 					Build Up Model Cost of Equity: <br>
 					\( k_e= R_f+RP_e+RP_s+RP_u \) <br>
-					= <input type="text"><br><br>
+					= <span id="kebum"></span> <br><br>
 					Capital Asset Model Cost of Equity: <br>
 					\( k_e= R_f+\beta(RP_e)+RP_s+RP_u \) <br>
-					= <input type="text"><br><br>
+					= <span id="kecapm"></span> <br><br>
 					Cost of Preferred Equity: <br>
-					\(k_p = CND \div \text{Price of Preferred Stock} \) <br>
-					= <input type="text"><br><br>
-					Cost of Debt: <br>
-					\( k_{d(pt)}=1-FV \) <br>
-					= <input type="text"><br>
+					\(k_p = D_c \div P_{ps} \) <br>
+					= <span id="kpe"></span> <br><br>
 				</div>
 			</div>
 		</li>
@@ -119,9 +102,9 @@
 				<div>
 					\(WACC=(k_e \times W_e)+(k_p \times W_p) + (k_{d(pt)}[1-\tau]\times W_d )\) <br><br>
 					WACC: Build Up Model <br>
-					= <input type="text"><br><br>
+					= <span id='waccbum'></span> <br><br>
 					WACC: CAPM <br>
-					= <input type="text"><br>
+					= <span id='wacccapm'></span>
 				</div>
 			</div>
 		</li>
@@ -134,13 +117,14 @@
 				<h3>Implied Cost of Capital Variables</h3>
 				<div>
 					<form action="">
-						Market Equity (\(M_t\))<input type="text"><br>
-						Perpetual Growth Rate (\(\gamma\)) <input type="text"><br>
-						Expected Earnings (\( E_{t}[E_{t+1}]) \) <input type="text"> <br>
-						(\( E_{t}[E_{t+2}]) \)<input type="text"><br>
-						(\( E_{t}[E_{t+3}]) \)<input type="text"><br>
-						(\( E_{t}[E_{t+4}]) \)<input type="text"><br>
-						Expected Dividends (\( E_{t}[D_{t+1}]) \) <input type="text">
+						Market Equity (\(M_t\))<input type="text" id='meq' maxlength='16'><br>
+						Perpetual Growth Rate (\(\gamma\)) <input type="text" id="gamma" maxlength='16'><br>
+						Expected Earnings (\( E_{t}[E_{t+1}]) \) <input type="text" id='eeone' maxlength='16'> <br>
+						(\( E_{t}[E_{t+2}]) \)<input type="text" id='eetwo' maxlength='16'><br>
+						(\( E_{t}[E_{t+3}]) \)<input type="text" id='eethree' maxlength='16'><br>
+						(\( E_{t}[E_{t+4}]) \)<input type="text" id='eefour' maxlength='16'><br>
+						(\( E_{t}[E_{t+5}]) \)<input type="text" id='eefive' maxlength='16'><br>
+						Expected Dividends (\( E_{t}[D_{t+1}]) \) <input type="text" id='edone' maxlength='16'>
 					</form>
 				</div>
 			</div>
@@ -149,12 +133,12 @@
 			<div id="accordioniccoj" class="accordion">
 				<h3>Implied Cost of Capital: Ohlson-Juettner Model</h3>
 				<div class='equation'>
-					\(A=0.5\left((\gamma-1)+\frac{E_{t}[D_{t+1}]}{M_{t}}\right)\) = <input type="text">
+					\(A=0.5\left((\gamma-1)+\frac{E_{t}[D_{t+1}]}{M_{t}}\right)\) = <span id='oja'></span>
 					<br><br>
-					\(g=0.5\left(\frac{E_{t}[E_{t+3}]-E_{t}[E_{t+2}]}{E_{t}[E_{t+2}]}+\frac{E_{t}[E_{t+5}]-E_{t}[E_{t+4}]}{E_{t}[E_{t+4}]}\right)\) = <input type="text">
+					\(g=0.5\left(\frac{E_{t}[E_{t+3}]-E_{t}[E_{t+2}]}{E_{t}[E_{t+2}]}+\frac{E_{t}[E_{t+5}]-E_{t}[E_{t+4}]}{E_{t}[E_{t+4}]}\right)\) = <span id='ojg'></span>
 					<br><br>
 					\(ICC=A+\sqrt{A^{2}+\frac{E_{t}[E_{t+1}]}{M_t}\times(g-(\gamma-1))}\) <br>
-					= <input type="text"><br><br>
+					= <span id='icc'></span><br><br>
 				</div>
 			</div>
 		</li>
