@@ -213,14 +213,14 @@ $( document ).ready(function() {
 			$('#kdpt').val(".05");
 
 			//icc variables
-			$('#meq').val("471.23");
+			$('#meq').val("353.8");
 			$('#gamma').val(".03");
-			$('#eeone').val("12.59");
+			$('#eeone').val("11.59");
 			$('#eetwo').val("11.49");
-			$('#eethree').val("11.0");
-			$('#eefour').val("10.88");
-			$('#eefive').val("10.4");
-			$('#edone').val("16");
+			$('#eethree').val("11.2");
+			$('#eefour').val("11.08");
+			$('#eefive').val("10.8");
+			$('#edone').val("15");
 
 			//define variables for common share component totals
 			var csct = parseFloat($('#csct').val(), 10);
@@ -350,13 +350,13 @@ $( document ).ready(function() {
 			$('#kdpt').val(".05");
 
 			//icc variables
-			$('#meq').val("471.23");
+			$('#meq').val("313.49");
 			$('#gamma').val(".03");
-			$('#eeone').val("12.59");
-			$('#eetwo').val("11.49");
-			$('#eethree').val("11.0");
-			$('#eefour').val("10.88");
-			$('#eefive').val("10.4");
+			$('#eeone').val("10.29");
+			$('#eetwo').val("10.09");
+			$('#eethree').val("9.98");
+			$('#eefour').val("9.90");
+			$('#eefive').val("9.87");
 			$('#edone').val("16");
 
 			//define variables for common share component totals
