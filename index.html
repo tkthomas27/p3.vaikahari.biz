@@ -7,7 +7,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>ICC</title>
+		<title>Cost of Capital Calculator</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,25 +17,36 @@
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-			<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		<link href="favicon.ico" rel="icon" type="image/x-icon" />
 	</head>
 
 	<body>
 
-<div> 
-<form action=""></form>
-	<input type="radio" id="radioapple" name="radio" /><label for="radioapple">Apple</label>
-	<input type="radio" id="radiogoogle" name="radio" /><label for="radiogoogle">Google</label>
-	<input type="radio" id="radiomicrosoft" name="radio" /><label for="radiomicrosoft">Microsoft</label>
-	</form>
-	<br>
-	<button>Custome Calculate</button><br><br>
+		<div class='radio'>
+			<div class='nav'>
+			<ul>
+				<li>
+					<input type="radio" id="radioapple" name="radio" /><label for="radioapple">Apple</label>
+				</li>
+				<li>
+					<input type="radio" id="radiogoogle" name="radio" /><label for="radiogoogle">Google</label>
+				</li>
+				<li>
+					<input type="radio" id="radiomicrosoft" name="radio" /><label for="radiomicrosoft">Microsoft</label>
+				</li>&nbsp
+				<li>
+					<button>Custom Calculate</button>
+				</li>
+			</ul>
+			</div>
+		</div>
 
-</div>
-
-<br><br>
 
 	<div id='wrap'>
+	<div id='logo'>
+		<h1>Cost of Capital Calculator</h1>
+	</div>
+
 	<ul id="sortablewacc" class="sortable">
 		<li>
 			<div id="accordionwaccvar" class="accordion">
@@ -52,19 +63,19 @@
 							<td>Common Stock</td>
 							<td align="center"><input type="text" id="csct" maxlength='16' class='inputbox'></td>
 							<td align="right"> \(W_e\) = </td>
-							<td id='csctweight'></td>
+							<td id='csctweight' class='output'></td>
 						</tr>
 						<tr>
 							<td>Preferred Stock</td>
 							<td align="center"><input type="text" id='psct' maxlength='16' class='inputbox'></td>
 							<td align="right"> \(W_p\) = </td>
-							<td id='psctweight'></td>
+							<td id='psctweight' class='output'></td>
 						</tr>
 						<tr>
 							<td>Bonds</td>
 							<td align="center"><input type="text" id='bct' maxlength='16' class='inputbox'></td>
 							<td align="right"> \(W_d\) = </td>
-							<td id='bctweight'></td>
+							<td id='bctweight' class='output'></td>
 						</tr>
 					</table>
 					<br><br>
@@ -97,15 +108,15 @@
 				<div>
 					<fieldset>
 						<legend>Build Up Model Cost of Equity</legend>
-						\( k_{e(b)}= R_f+RP_e+RP_s+RP_u \) = <span id="kebum"></span><br>
+						\( k_{e(b)}= R_f+RP_e+RP_s+RP_u \) = <span id="kebum" class='output'></span><br>
 					</fieldset><br>
 					<fieldset>
 						<legend>Capital Asset Model Cost of Equity</legend>
-						\( k_{e(capm)}= R_f+\beta(RP_e)+RP_s+RP_u \) = <span id="kecapm"></span> <br>
+						\( k_{e(capm)}= R_f+\beta(RP_e)+RP_s+RP_u \) = <span id="kecapm" class='output'></span> <br>
 					</fieldset><br>
 					<fieldset>
 						<legend>Cost of Preferred Equity</legend>
-						\(k_p = D_c \div P_{ps} \) = <span id="kpe"></span> <br>
+						\(k_p = D_c \div P_{ps} \) = <span id="kpe" class='output'></span> <br>
 					</fieldset><br>
 				</div>
 			</div>
@@ -120,11 +131,11 @@
 					</fieldset><br>
 					<fieldset>
 						<legend>WACC: Build Up Model</legend>
-						\(WACC=(k_{e(b)} \times W_e)+(k_p \times W_p) + (k_{d(pt)}[1-\tau]\times W_d )\) = <span id='waccbum'></span> <br>
+						\(WACC=(k_{e(b)} \times W_e)+(k_p \times W_p) + (k_{d(pt)}[1-\tau]\times W_d )\) = <span id='waccbum' class='output'></span> <br>
 					</fieldset><br>
 					<fieldset>
 						<legend>WACC: CAPM</legend>
-						\(WACC=(k_{e(capm)} \times W_e)+(k_p \times W_p) + (k_{d(pt)}[1-\tau]\times W_d )\) = <span id='wacccapm'></span>
+						\(WACC=(k_{e(capm)} \times W_e)+(k_p \times W_p) + (k_{d(pt)}[1-\tau]\times W_d )\) = <span id='wacccapm' class='output'></span>
 					</fieldset><br>
 				</div>
 			</div>
@@ -140,17 +151,17 @@
 					<form action="">
 						<fieldset>
 							<legend>Firm Variables</legend>
-							Market Equity (\(M_t\))<input type="text" id='meq' maxlength='16' class='inputbox'><br>
-							Perpetual Growth Rate (\(\gamma\)) <input type="text" id="gamma" maxlength='16' class='inputbox'><br>
+							Market Equity (\(M_t\)): <input type="text" id='meq' maxlength='16' class='inputbox'><br>
+							Perpetual Growth Rate (\(\gamma\)): <input type="text" id="gamma" maxlength='16' class='inputbox'><br>
 						</fieldset><br>
 						<fieldset>
 							<legend>Expected Values</legend>
-							Expected Earnings (\( E_{t}[E_{t+1}]) \) <input type="text" id='eeone' maxlength='16' class='inputbox'> <br>
-							Expected Earnings (\( E_{t}[E_{t+2}]) \)<input type="text" id='eetwo' maxlength='16' class='inputbox'><br>
-							Expected Earnings (\( E_{t}[E_{t+3}]) \)<input type="text" id='eethree' maxlength='16' class='inputbox'><br>
-							Expected Earnings (\( E_{t}[E_{t+4}]) \)<input type="text" id='eefour' maxlength='16' class='inputbox'><br>
-							Expected Earnings (\( E_{t}[E_{t+5}]) \)<input type="text" id='eefive' maxlength='16' class='inputbox'><br>
-							Expected Dividends (\( E_{t}[D_{t+1}]) \) <input type="text" id='edone' maxlength='16' class='inputbox'>
+							Expected Earnings (\( E_{t}[E_{t+1}]) \): <input type="text" id='eeone' maxlength='16' class='inputbox'> <br>
+							Expected Earnings (\( E_{t}[E_{t+2}]) \): <input type="text" id='eetwo' maxlength='16' class='inputbox'><br>
+							Expected Earnings (\( E_{t}[E_{t+3}]) \): <input type="text" id='eethree' maxlength='16' class='inputbox'><br>
+							Expected Earnings (\( E_{t}[E_{t+4}]) \): <input type="text" id='eefour' maxlength='16' class='inputbox'><br>
+							Expected Earnings (\( E_{t}[E_{t+5}]) \): <input type="text" id='eefive' maxlength='16' class='inputbox'><br>
+							Expected Dividends (\( E_{t}[D_{t+1}]) \): <input type="text" id='edone' maxlength='16' class='inputbox'>
 						</fieldset>
 					</form>
 				</div>
@@ -162,13 +173,13 @@
 				<div class='equation'>
 					<fieldset>
 						<legend>Ohlson-Juettner Variables</legend>
-						\(A=0.5\left((\gamma-1)+\frac{E_{t}[D_{t+1}]}{M_{t}}\right)\) = <span id='oja'></span>
+						\(A=0.5\left((\gamma-1)+\frac{E_{t}[D_{t+1}]}{M_{t}}\right)\) = <span id='oja' class='output'></span>
 						<br><br>
-						\(g=0.5\left(\frac{E_{t}[E_{t+3}]-E_{t}[E_{t+2}]}{E_{t}[E_{t+2}]}+\frac{E_{t}[E_{t+5}]-E_{t}[E_{t+4}]}{E_{t}[E_{t+4}]}\right)\) = <span id='ojg'></span>
+						\(g=0.5\left(\frac{E_{t}[E_{t+3}]-E_{t}[E_{t+2}]}{E_{t}[E_{t+2}]}+\frac{E_{t}[E_{t+5}]-E_{t}[E_{t+4}]}{E_{t}[E_{t+4}]}\right)\) = <span id='ojg' class='output'></span>
 					</fieldset><br>
 					<fieldset>
 						<legend>ICC: Ohlson-Juettner Formula</legend>
-						\(ICC=A+\sqrt{A^{2}+\frac{E_{t}[E_{t+1}]}{M_t}\times(g-(\gamma-1))}\) = <span id='icc'></span>
+						\(ICC=A+\sqrt{A^{2}+\frac{E_{t}[E_{t+1}]}{M_t}\times(g-(\gamma-1))}\) = <span id='icc' class='output'></span>
 					</fieldset><br><br>
 				</div>
 			</div>
