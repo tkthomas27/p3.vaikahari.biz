@@ -1,9 +1,10 @@
 $( document ).ready(function() {
 
 
-	//***************************************
+
+	//************************************************************************************************************************************
 	//jQuery
-	//***************************************
+	//************************************************************************************************************************************
 	
 	// set sections to be accordions; collapsible means they can all be closed at once
 	$(function() {
@@ -28,6 +29,7 @@ $( document ).ready(function() {
 
 	});
 
+
 	//radio button functionality
 	$(function() {
 
@@ -36,11 +38,15 @@ $( document ).ready(function() {
 	});
 
 	$(function() {
+
 		$( ".radio" ).buttonset();
+
 	});
+
 
 	//modal box with rules 
 	$(function() {
+
 		$( "#dialog" ).dialog({
 			autoOpen: false,
 			show: {
@@ -58,10 +64,12 @@ $( document ).ready(function() {
 		});
 	});
 
-	//***************************************
-	//functionality
-	//***************************************
 
+	//************************************************************************************************************************************
+	//functionality
+	//************************************************************************************************************************************
+
+	//define the primary calculator
 	function calc(){
 
 			//define variables for common share component totals
@@ -109,14 +117,21 @@ $( document ).ready(function() {
 			//variable for the cost of preferred equity
 			var kpe = parseFloat(cnd/pps).toFixed(4);
 
-			//icc variables
+			//icc market equity variable
 			var meq = parseFloat($('#meq').val(), 10);
+			//icc gamma variable
 			var gamma = parseFloat($('#gamma').val(), 10);
+			//icc expected earnings year one plus
 			var eeone = parseFloat($('#eeone').val(), 10);
+			//icc expected earnings year two plus
 			var eetwo = parseFloat($('#eetwo').val(), 10);
+			//icc expected earnings year three plus
 			var eethree = parseFloat($('#eethree').val(), 10);
+			//icc expected earnings year four plus
 			var eefour = parseFloat($('#eefour').val(), 10);
+			//icc expected earnings year five plus
 			var eefive = parseFloat($('#eefive').val(), 10);
+			//icc expected dividends year one plus
 			var edone = parseFloat($('#edone').val(), 10);
 
 			//icc calculation variables
@@ -124,6 +139,32 @@ $( document ).ready(function() {
 			var ojg = parseFloat(0.5*(((eethree-eetwo)/eetwo)+((eefive-eefour)/eefour))).toFixed(4);
 			var icc = parseFloat(oja + Math.sqrt(Math.pow(oja,2)+(eeone/meq)*(ojg-(gamma-1)))).toFixed(4);
 
+			//prevent blanks from being input
+			if(!$(".inputbox").val()){
+				alert("Blanks are not allowed");
+				return false;
+			}
+
+			//prevent component totals from being below zero
+			if(csct<0 || psct<0 || bct<0)
+			{
+				alert("Component Totals cannot be below zero");
+				return false;
+			}
+
+			//prevent all components from being zero
+			if(csct===0 && psct===0 && bct===0)
+			{
+				alert("One component must be above zero!");
+				return false;
+			}
+
+			//prevent icc variables from being less than zero
+			if(meq<=0 || eeone<=0 || eetwo<=0 || eethree<=0 || eefour<=0 || eefive<=0 || edone<=0)
+			{
+				alert("ICC variables (except growth rate) cannot be below zero");
+				return false;
+			}
 
 			//in the preset companies, there is no prefered equity. to prevent NaN from dividing by zero, we eliminate the preferred equity component of the calculations
 			if (pps===0)
@@ -135,6 +176,7 @@ $( document ).ready(function() {
 				$('#waccbum').html(waccbum);
 				$('#wacccapm').html(wacccapm);
 			}
+
 			//go as normal
 			else
 			{
@@ -159,7 +201,60 @@ $( document ).ready(function() {
 
 	}
 
+	//define a google preload function when the page is loaded
+	function google(){
+			//common shares component
+			$('#csct').val("83");
+			//preferred equity component
+			$('#psct').val("0");
+			//bond component
+			$('#bct').val("5.2");
 
+			//risk free rate
+			$('#rf').val(".035");
+			//market return
+			$('#rpe').val(".1342");
+			//tax rate
+			$('#tax').val(".4");
+
+
+			//size risk premium
+			$('#rps').val("0.74");
+			//industry risk premium
+			$('#rpi').val(".1");
+
+			//company spcecific risk premium
+			$('#rpu').val(".052");
+			//beta
+			$('#beta').val(".92");
+			//cumulative non participating dividend
+			$('#cnd').val("0");
+			//price of preferred stock
+			$('#pps').val("0");
+			//cost of debt
+			$('#kdpt').val(".05");
+
+			//icc variables
+			$('#meq').val("353.8");
+			$('#gamma').val(".03");
+			$('#eeone').val("11.59");
+			$('#eetwo').val("11.49");
+			$('#eethree').val("11.2");
+			$('#eefour').val("11.08");
+			$('#eefive').val("10.8");
+			$('#edone').val("15");
+
+			//call the variables
+			calc();
+	}
+
+	//when the page is loaded, load the google preset
+	window.onload = function preload(){
+		$("#radiogoogle").click();
+	};
+
+
+	//when the radio buttons are changed, change the preset values
 	$("input[name='radio']").change(function () {
 
 		if ($("#radioapple").click(function() {
@@ -209,53 +304,9 @@ $( document ).ready(function() {
 
 		}));
 
-		if ($("#radiogoogle").click(function() {
+		if ($("#radiogoogle").click(google()
 
-			//common shares component
-			$('#csct').val("83");
-			//preferred equity component
-			$('#psct').val("0");
-			//bond component
-			$('#bct').val("5.2");
-
-			//risk free rate
-			$('#rf').val(".035");
-			//market return
-			$('#rpe').val(".1342");
-			//tax rate
-			$('#tax').val(".4");
-
-
-			//size risk premium
-			$('#rps').val("0.74");
-			//industry risk premium
-			$('#rpi').val(".1");
-
-			//company spcecific risk premium
-			$('#rpu').val(".052");
-			//beta
-			$('#beta').val(".92");
-			//cumulative non participating dividend
-			$('#cnd').val("0");
-			//price of preferred stock
-			$('#pps').val("0");
-			//cost of debt
-			$('#kdpt').val(".05");
-
-			//icc variables
-			$('#meq').val("353.8");
-			$('#gamma').val(".03");
-			$('#eeone').val("11.59");
-			$('#eetwo').val("11.49");
-			$('#eethree').val("11.2");
-			$('#eefour').val("11.08");
-			$('#eefive').val("10.8");
-			$('#edone').val("15");
-
-			//call the variables
-			calc();
-
-		}));
+			));
 
 		if ($("#radiomicrosoft").click(function() {
 
@@ -309,41 +360,14 @@ $( document ).ready(function() {
 
 	$('button').click(function(){
 
-			//call the variables
-			calc();
-
-			//prevent component totals from being less than zero
-			if(csct<0 || psct<0 || bct<0)
-			{
-				alert("Component Totals cannot be below zero");
-				event.preventDefault();
-			}
-			//prevent icc variables from being less than zero
-			if(meq<=0 || eeone<=0 || eetwo<=0 || eethree<=0 || eefour<=0 || eefive<=0 || edone<=0)
-			{
-				alert("ICC variables (except growth rate) cannot be below zero");
-				event.preventDefault();
-			}
-			//if pps is zero, set kpe to zero; just to be sure force the wacc equations to calculate without kpe
-			if (pps===0)
-			{
-				var kpe = 0;
-				var waccbum = parseFloat((kebum*csctweight)+(kdpt*(1-tax)*bctweight)).toFixed(4);
-				var wacccapm = parseFloat((kecapm*csctweight)+(kdpt*(1-tax)*bctweight)).toFixed(4);
-			}
-			//go as normal
-			else
-			{
-				var waccbum = parseFloat((kebum*csctweight)+(kpe*psctweight)+(kdpt*(1-tax)*bctweight)).toFixed(4);
-				var wacccapm = parseFloat((kecapm*csctweight)+(kpe*psctweight)+(kdpt*(1-tax)*bctweight)).toFixed(4);
-			}
-
+		//perform calculation
+		calc();
 
 	});
 
-	//***************************************
+	//************************************************************************************************************************************
 	//plugins
-	//***************************************
+	//************************************************************************************************************************************
 
 	//TexoTela Numeric Plugin for preventing the entering of non-numeric inputs
 	$(".inputbox").keydown(function(event) {
@@ -366,12 +390,3 @@ $( document ).ready(function() {
 
 
 });
-
-
-
-
-
-
-
-
-
