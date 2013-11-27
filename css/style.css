@@ -1,102 +1,111 @@
-.weight{
-	text-align: right;
-}
 
+	/*Add gradient background color*/
+	body{
+		background: #45484d; /* Old browsers */
+		background: -moz-linear-gradient(top,  #45484d 0%, #000000 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top,  #45484d 0%,#000000 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  #45484d 0%,#000000 100%); /* IE10+ */
+		background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	}
 
-#opener{
-	font-family: sans-serif;
-	font-size: 30px;
-	text-align: center;
-	color: #222;
-	text-shadow: 0px 2px 3px #555;
-	font-weight: bold;
-	background-color: #45484d;
-}
-
-
-.sortable{
-	list-style-type: none;
-}
-
-#logo{
-	font-family: sans-serif;
-	font-size: 30px;
-	text-align: center;
-	color: #222;
-	text-shadow: 0px 2px 3px #555;
-	font-weight: bold;
-}
-
-#wrap{
-	height:100%;
-	width:850px;
-	margin:auto;
-	padding-top: 70px;
-	padding-bottom: 70px;
-}
-
-table,th,td
-{
-	border:1px solid white;
-}
-
-td{
-	padding:5px;
-}
-
-th{
-	padding:5;
-}
-
-.output{
-	color:#FFA9A0;
-}
-
-input{
-	color:#0A1C24;
-	background-color: #3BBCD9;
-	border-radius: 5px;
-}
-
-.nav {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	color: #0A1C24;
-	height: 80px;
-	margin:auto;
-	text-align: center;
-	padding-top: 15px;
-	white-space: nowrap;
-	/* Adds shadow to the bottom of the bar */
-	-webkit-box-shadow: 0px 0px 8px 0px #000000;
-	-moz-box-shadow: 0px 0px 8px 0px #000000;
-	box-shadow: 0px 0px 8px 0px #000000;
-	/* Adds the transparent background */
-	background-color: rgba(1, 1, 1, 0.8);
-	color: rgba(1, 1, 1, 0.8);
+	/*Format Top menu so that it is transparent and stays at the top of the window*/
+	.nav {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		color: #0A1C24;
+		height: 80px;
+		margin:auto;
+		text-align: center;
+		padding-top: 15px;
+		white-space: nowrap;
+		/* Adds shadow to the bottom of the bar */
+		-webkit-box-shadow: 0px 0px 8px 0px #000000;
+		-moz-box-shadow: 0px 0px 8px 0px #000000;
+		box-shadow: 0px 0px 8px 0px #000000;
+		/* Adds the transparent background */
+		background-color: rgba(1, 1, 1, 0.8);
+		color: rgba(1, 1, 1, 0.8);
 		z-index: 9999999 !important;
-}
+	}
 
-.nav li{
-	font-size: 20px;
-	color: white;
-	text-decoration: none;
-	display:inline;
-	font-family: sans-serif;
-	margin-left: auto;
-	margin-right: auto;
-	top:0;
+	.nav li{
+		font-size: 20px;
+		color: white;
+		text-decoration: none;
+		display:inline;
+		font-family: sans-serif;
+		margin-left: auto;
+		margin-right: auto;
+		top:0;
+	}
 
-}
+	/*Format wrap for positioning*/
+	#wrap{
+		height:100%;
+		width:850px;
+		margin:auto;
+		padding-top: 70px;
+		padding-bottom: 70px;
+	}
 
-body{
-	background: #45484d; /* Old browsers */
-	background: -moz-linear-gradient(top,  #45484d 0%, #000000 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #45484d 0%,#000000 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #45484d 0%,#000000 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
-}
+	/*Format the main title for inset look*/
+	#logo{
+		font-family: sans-serif;
+		font-size: 30px;
+		text-align: center;
+		color: #222;
+		text-shadow: 0 2px 3px #555;
+		font-weight: bold;
+	}
+
+	/*Format the button containing the rules*/
+	#opener{
+		font-family: sans-serif;
+		font-size: 30px;
+		text-align: center;
+		color: #222;
+		text-shadow: 0px 2px 3px #555;
+		font-weight: bold;
+		background-color: #45484d;
+	}
+
+
+
+	/*Format various body elements so that they look better*/
+	table,th,td
+	{
+		border:1px solid white;
+	}
+
+	td{
+		padding:5px;
+	}
+
+	th{
+		padding:5;
+	}
+
+	.weight{
+		text-align: right;
+	}
+
+	.sortable{
+		list-style-type: none;
+	}
+
+	.output{
+		color:#FFA9A0;
+	}
+
+	input{
+		color:#0A1C24;
+		background-color: #3BBCD9;
+		border-radius: 5px;
+	}
+
+
+

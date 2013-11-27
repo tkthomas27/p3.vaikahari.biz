@@ -2,7 +2,7 @@ $( document ).ready(function() {
 
 
 	//***************************************
-	//form
+	//jQuery
 	//***************************************
 	
 	// set sections to be accordions; collapsible means they can all be closed at once
@@ -135,6 +135,7 @@ $( document ).ready(function() {
 				$('#waccbum').html(waccbum);
 				$('#wacccapm').html(wacccapm);
 			}
+			//go as normal
 			else
 			{
 				var waccbum = parseFloat((kebum*csctweight)+(kpe*psctweight)+(kdpt*(1-tax)*bctweight)).toFixed(4);

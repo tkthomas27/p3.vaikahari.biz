@@ -13,7 +13,7 @@
 </head>
 
 <body>
-
+	<!-- The top menu; transparent and stays at the top; contains button for auto inputs and customization -->
 	<div class='radio'>
 		<div class='nav'>
 			<ul>
@@ -33,13 +33,15 @@
 		</div>
 	</div>
 
-
+	<!-- Wrap for all body elements so that can be positioned consistently -->
 	<div id='wrap'>
 
+		<!-- Logo: contains the title and a button for revealing the rules -->
 		<div id='logo'>
 
 			<h1>Cost of Capital Calculator</h1>
 
+			<!-- The Rules of Calculation remain hidden unti the button Click for Rules is clicked then jquery brings it out -->
 			<div id="dialog" title="Rules for Calculation">
 				<ol>
 					<li>Letter Inputs are not allowed </li>
@@ -51,19 +53,26 @@
 				</ol>
 			</div>
  
+ 			<!-- Button for revealing the top part -->
 			<button id="opener">Click for Rules</button>
 
 		</div>
 
 		<br>
 
+		<!-- Sortable unordered list containing primary body elements. jQuery takes care of the sortable part allowing each li
+		to be repositioned for more convenient viewing-->
 		<ul class="sortable">
 
 			<li>
+				<!-- Make the contents of each li and accordion so that it can be collapsed. jQuery takes care of the accordion 
+				allowing for more convenient viewing-->
 				<div class="accordion">
 
+					<!-- h3 tags go in top bar of accordion -->
 					<h3>Traditional Cost of Capital Variables (Sections are Sortable!)</h3>
 
+					<!-- This is a table for displaying and changing the component totals of the company's capital structure -->
 					<div>
 						<table>
 							<tr>
@@ -76,24 +85,29 @@
 								<td>Common Stock</td>
 								<td><input type="text" id="csct" maxlength='16' class='inputbox'></td>
 								<td class='weight'> \(W_e\) = </td>
+								<!-- This number is calculated by javascript by dividing it by the total of all components -->
 								<td id='csctweight' class='output'></td>
 							</tr>
 							<tr>
 								<td>Preferred Stock</td>
 								<td><input type="text" id='psct' maxlength='16' class='inputbox'></td>
 								<td class='weight'> \(W_p\) = </td>
+								<!-- This number is calculated by javascript by dividing it by the total of all components -->
 								<td id='psctweight' class='output'></td>
 							</tr>
 							<tr>
 								<td>Bonds</td>
 								<td><input type="text" id='bct' maxlength='16' class='inputbox'></td>
 								<td class='weight'> \(W_d\) = </td>
+								<!-- This number is calculated by javascript by dividing it by the total of all components -->
 								<td id='bctweight' class='output'></td>
 							</tr>
 						</table>
 
 					<br><br>
 
+						<!-- This field is for general variables that apply to all companies. Values are taken in by javascript to be
+						used in formulas later. Preset company values are also stored in javascript-->
 						<fieldset>
 							<legend>General Variables</legend>
 							<form>
@@ -105,6 +119,8 @@
 
 					<br>
 
+						<!-- This field is for company specific variables. Values are taken in by javascript to be
+						used in formulas later. Preset company values are also stored in javascript -->
 						<fieldset>
 							<legend>Company Specific Variables</legend>
 								<label>Beta (\(\beta\)):</label> <input type="text" id='beta' maxlength='16' class='inputbox'><br>
@@ -120,11 +136,14 @@
 			</li>
 
 			<li>
+				<!-- Make the contents of each li and accordion so that it can be collapsed. jQuery takes care of the accordion 
+				allowing for more convenient viewing-->
 				<div class="accordion">
 
+					<!-- h3 tags go in top bar of accordion -->
 					<h3>Cost of Equities</h3>
 					<div>
-
+						<!-- These equations are calculated by javascript using the above wacc inputs-->
 						<fieldset>
 							<legend>Build Up Model Cost of Equity</legend>
 							\( k_{e(b)}= R_f+RP_e+RP_s+RP_u \) = <span id="kebum" class='output'></span><br>
@@ -146,12 +165,15 @@
 			</li>
 
 			<li>
+				<!-- Make the contents of each li and accordion so that it can be collapsed. jQuery takes care of the accordion 
+				allowing for more convenient viewing-->
 				<div class="accordion">
 
+					<!-- h3 tags go in top bar of accordion -->
 					<h3>Weighted Average Cost of Capital</h3>
 
 					<div>
-
+						<!-- These equations are calculated by javascript using the above wacc inputs-->
 						<fieldset>
 							<legend>General Weighted Average Cost of Capital Formula</legend>
 							\(WACC=(k_e \times W_e)+(k_p \times W_p) + (k_{d(pt)}[1-\tau]\times W_d )\) <br>
@@ -172,17 +194,24 @@
 			</li>
 
 			<li>
+				<!-- Make the contents of each li and accordion so that it can be collapsed. jQuery takes care of the accordion 
+				allowing for more convenient viewing-->
 				<div class="accordion">
 
+					<!-- h3 tags go in top bar of accordion -->
 					<h3>Implied Cost of Capital Variables</h3>
 
 					<div>
+						<!-- This field is for general variables to be used in the icc formula. Values are taken in by javascript to be
+						used in formulas later. Preset company values are also stored in javascript -->
 						<fieldset>
 							<legend>Firm Variables</legend>
 							Market Equity (\(M_t\)): <input type="text" id='meq' maxlength='16' class='inputbox'><br>
 							Perpetual Growth Rate (\(\gamma\)): <input type="text" id="gamma" maxlength='16' class='inputbox'><br>
 						</fieldset><br>
 
+						<!-- This field is for general variables to be used in the icc formula. Values are taken in by javascript to be
+						used in formulas later. Preset company values are also stored in javascript -->
 						<fieldset>
 							<legend>Expected Values</legend>
 							Expected Earnings (\( E_{t}[E_{t+1}]) \): <input type="text" id='eeone' maxlength='16' class='inputbox'> <br>
@@ -197,12 +226,15 @@
 			</li>
 
 			<li>
+				<!-- Make the contents of each li and accordion so that it can be collapsed. jQuery takes care of the accordion 
+				allowing for more convenient viewing-->
 				<div class="accordion">
 
+					<!-- h3 tags go in top bar of accordion -->
 					<h3>Implied Cost of Capital: Ohlson-Juettner Model</h3>
 
 					<div class='equation'>
-
+						<!-- These equations are calculated by javascript using the above icc inputs-->
 						<fieldset>
 							<legend>Ohlson-Juettner Variables</legend>
 							\(A=0.5\left((\gamma-1)+\frac{E_{t}[D_{t+1}]}{M_{t}}\right)\) = <span id='oja' class='output'></span>
