@@ -34,6 +34,10 @@ $( document ).ready(function() {
 
 	});
 
+	$(function() {
+		$( ".radio" ).buttonset();
+	});
+
 	//***************************************
 	//functionality
 	//***************************************
@@ -130,6 +134,7 @@ $( document ).ready(function() {
 			$('#oja').html(oja);
 			$('#ojg').html(ojg);
 			$('#icc').html(icc);
+
 	}
 
 
@@ -177,7 +182,7 @@ $( document ).ready(function() {
 			$('#eefive').val("10.4");
 			$('#edone').val("16");
 
-
+			//call the variables
 			calc();
 
 		}));
@@ -225,6 +230,7 @@ $( document ).ready(function() {
 			$('#eefive').val("10.8");
 			$('#edone').val("15");
 
+			//call the variables
 			calc();
 
 		}));
@@ -270,7 +276,8 @@ $( document ).ready(function() {
 			$('#eefour').val("9.90");
 			$('#eefive').val("9.87");
 			$('#edone').val("16");
-
+			
+			//call the variables
 			calc();
 
 		}));
@@ -280,10 +287,13 @@ $( document ).ready(function() {
 
 	$('button').click(function(){
 
-			var csct = parseInt($('#csct').val(), 10);
-			var psct = parseInt($('#psct').val(), 10);
-			var bct = parseInt($('#bct').val(), 10);
-			var pps = parseFloat($('#pps').val(), 10);
+			//define variables for common share component totals
+			var csct = parseFloat($('#csct').val(), 10);
+			//define variables for preferred share component totals
+			var psct = parseFloat($('#psct').val(), 10);
+			//define variables for bond component totals
+			var bct = parseFloat($('#bct').val(), 10);
+
 			//define variable for risk free rate
 			var rf = parseFloat($('#rf').val(), 10);
 			//define variable for equity risk premium
@@ -318,41 +328,9 @@ $( document ).ready(function() {
 			var kebum = parseFloat(rf+rpe+rps+rpu).toFixed(4);
 			//variable for the cost of equity in the capm
 			var kecapm = parseFloat(rf+(beta*rpe)+rps+rpu).toFixed(4);
-			//icc variables
 
-			var meq = parseFloat($('#meq').val(), 10);
-			var gamma = parseFloat($('#gamma').val(), 10);
-			var eeone = parseFloat($('#eeone').val(), 10);
-			var eetwo = parseFloat($('#eetwo').val(), 10);
-			var eethree = parseFloat($('#eethree').val(), 10);
-			var eefour = parseFloat($('#eefour').val(), 10);
-			var eefive = parseFloat($('#eefive').val(), 10);
-			var edone = parseFloat($('#edone').val(), 10);
-
-			if(csct<0 || psct<0 || bct<0)
-			{
-				alert("Component Totals cannot be below Zero");
-				event.preventDefault();
-			}
-			if(pps<0)
-			{
-				alert('PPS cannot be below zero');
-
-
-				$('#cnd').val("0");
-				$('#pps').val("0");
-				var kpe = 0;
-				var waccbum = parseFloat((kebum*csctweight)+(kdpt*(1-tax)*bctweight)).toFixed(4);
-				var wacccapm = parseFloat((kecapm*csctweight)+(kdpt*(1-tax)*bctweight)).toFixed(4);
-				$('#kpe').html(kpe);
-				$('#waccbum').html(waccbum);
-				$('#wacccapm').html(wacccapm);
-			}
-			if(meq<=0 || eeone<=0 || eetwo<=0 || eethree<=0 || eefour<=0 || eefive<=0 || edone<=0)
-			{
-				alert("ICC variables (except growth rate) cannont be below Zero");
-				event.preventDefault();
-			}
+			//variable for the cost of preferred equity
+			var kpe = parseFloat(cnd/pps).toFixed(4);
 
 			//icc variables
 			var meq = parseFloat($('#meq').val(), 10);
@@ -369,6 +347,23 @@ $( document ).ready(function() {
 			var ojg = parseFloat(0.5*(((eethree-eetwo)/eetwo)+((eefive-eefour)/eefour))).toFixed(4);
 			var icc = parseFloat(oja + Math.sqrt(Math.pow(oja,2)+(eeone/meq)*(ojg-(gamma-1)))).toFixed(4);
 
+			if(csct<0 || psct<0 || bct<0)
+			{
+				alert("Component Totals cannot be below zero");
+				event.preventDefault();
+			}
+			if(pps<0)
+			{
+				alert('Price of Preferred Equity cannot be below zero');
+				event.preventDefault();
+
+			}
+			if(meq<=0 || eeone<=0 || eetwo<=0 || eethree<=0 || eefour<=0 || eefive<=0 || edone<=0)
+			{
+				alert("ICC variables (except growth rate) cannont be below zero");
+				event.preventDefault();
+			}
+
 			//display the results
 			$('#csctweight').html(csctweight);
 			$('#psctweight').html(psctweight);
@@ -376,6 +371,7 @@ $( document ).ready(function() {
 
 			$('#kebum').html(kebum);
 			$('#kecapm').html(kecapm);
+			$('#kpe').html(kpe);
 
 			$('#oja').html(oja);
 			$('#ojg').html(ojg);
@@ -389,7 +385,7 @@ $( document ).ready(function() {
 
 	//TexoTela Numeric Plugin for preventing the entering of non-numeric inputs
 	$(".inputbox").keydown(function(event) {
-		// Allow: backspace, delete, tab, escape, enter and .
+		// Allow: backspace, delete, tab, escape, enter, -, and .
 		if ( $.inArray(event.keyCode,[46,8,9,27,13,190,109,189,45]) !== -1 ||
 			// Allow: Ctrl+A
 			(event.keyCode == 65 && event.ctrlKey === true) || 
@@ -405,10 +401,6 @@ $( document ).ready(function() {
 			}
 		}
 	});
-
-	  $(function() {
-    $( ".radio" ).buttonset();
-  });
 
 
 });

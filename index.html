@@ -4,26 +4,24 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Cost of Capital Calculator</title>
-		<meta name="description" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Cost of Capital Calculator</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link rel="stylesheet" href="css/dark-hive/jquery-ui-1.10.3.custom.css" type="text/css">
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	<link href="favicon.ico" rel="icon" type="image/x-icon" />
+</head>
 
-		<link rel="stylesheet" href="css/style.css" type="text/css">
-		<link rel="stylesheet" href="css/dark-hive/jquery-ui-1.10.3.custom.css" type="text/css">
-		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<body>
 
-		<link href="favicon.ico" rel="icon" type="image/x-icon" />
-	</head>
-
-	<body>
-
-		<div class='radio'>
-			<div class='nav'>
+	<div class='radio'>
+		<div class='nav'>
 			<ul>
 				<li>
 					<input type="radio" id="radioapple" name="radio" /><label for="radioapple">Apple</label>
@@ -38,156 +36,195 @@
 					<button>Custom Calculate</button>
 				</li>
 			</ul>
-			</div>
 		</div>
+	</div>
 
 
 	<div id='wrap'>
-	<div id='logo'>
-		<h1>Cost of Capital Calculator</h1>
-	</div>
 
-	<ul id="sortablewacc" class="sortable">
-		<li>
-			<div id="accordionwaccvar" class="accordion">
-				<h3>Traditional Cost of Capital Variables</h3>
-				<div>
-					<table cellpadding="5">
-						<tr>
-							<th>Component</th>
-							<th>Component Total (<i>in Bil</i>)</th>
-							<th>Weight Var</th>
-							<th>Weight</th>
-						</tr>
-						<tr>
-							<td>Common Stock</td>
-							<td align="center"><input type="text" id="csct" maxlength='16' class='inputbox'></td>
-							<td align="right"> \(W_e\) = </td>
-							<td id='csctweight' class='output'></td>
-						</tr>
-						<tr>
-							<td>Preferred Stock</td>
-							<td align="center"><input type="text" id='psct' maxlength='16' class='inputbox'></td>
-							<td align="right"> \(W_p\) = </td>
-							<td id='psctweight' class='output'></td>
-						</tr>
-						<tr>
-							<td>Bonds</td>
-							<td align="center"><input type="text" id='bct' maxlength='16' class='inputbox'></td>
-							<td align="right"> \(W_d\) = </td>
-							<td id='bctweight' class='output'></td>
-						</tr>
-					</table>
+		<div id='logo'>
+
+			<h1>Cost of Capital Calculator</h1>
+			<p>1. No Letter Inputs <br>
+			2. Certain Values cannot be Zero or Below <br>
+			3. Click above for examples (data is faked) <br>
+			4. Change values and click 'Custom Calculate' <br>
+			</p>
+
+		</div>
+
+		<ul class="sortable">
+
+			<li>
+				<div class="accordion">
+
+					<h3>Traditional Cost of Capital Variables (Sections are Sortable!)</h3>
+					<div>
+
+						<table cellpadding="5">
+							<tr>
+								<th>Component</th>
+								<th>Component Total (<i>in Bil</i>)</th>
+								<th>Weight Var</th>
+								<th>Weight</th>
+							</tr>
+							<tr>
+								<td>Common Stock</td>
+								<td><input type="text" id="csct" maxlength='16' class='inputbox'></td>
+								<td id='weight'> \(W_e\) = </td>
+								<td id='csctweight' class='output'></td>
+							</tr>
+							<tr>
+								<td>Preferred Stock</td>
+								<td><input type="text" id='psct' maxlength='16' class='inputbox'></td>
+								<td id='weight'> \(W_p\) = </td>
+								<td id='psctweight' class='output'></td>
+							</tr>
+							<tr>
+								<td>Bonds</td>
+								<td><input type="text" id='bct' maxlength='16' class='inputbox'></td>
+								<td id='weight'> \(W_d\) = </td>
+								<td id='bctweight' class='output'></td>
+							</tr>
+						</table>
+
 					<br><br>
+
 					<fieldset>
 						<legend>General Variables</legend>
 						<form>
-							<label>Tax Rate (\(\tau\)):</label> <input type="text" id='tax' maxlength='16' class='inputbox' align='center'><br>
-							<label>Risk Free Rate (\(R_f\)):</label> <input type="text" id='rf' maxlength='16' class='inputbox' align='center'><br>
-							<label>Equity Risk Premium (\(RP_e\)):</label> <input type="text" id='rpe' maxlength='16' class='inputbox' align='center'><br>
+							<label>Tax Rate (\(\tau\)):</label> <input type="text" id='tax' maxlength='16' class='inputbox'><br>
+							<label>Risk Free Rate (\(R_f\)):</label> <input type="text" id='rf' maxlength='16' class='inputbox'><br>
+							<label>Equity Risk Premium (\(RP_e\)):</label> <input type="text" id='rpe' maxlength='16' class='inputbox'><br>
 						</form>
 					</fieldset>
+
 					<br>
+
 					<fieldset>
 						<legend>Company Specific Variables</legend>
 						<form>
-							<label>Beta (\(\beta\)):</label> <input type="text" id='beta' maxlength='16' class='inputbox' align='center'><br>
-							<label>Size Risk Premium (\(RP_s\)):</label> <input type="text" id='rps' maxlength='16' class='inputbox' align='center'><br>
-							<label>Price of Preferred Stock (\(P_{ps})\):</label> <input type="text" id='pps' maxlength='16' class='inputbox' align='center'><br>
-							<label>Industry Risk Premium (\(RP_i\)):</label> <input type="text" id='rpi' maxlength='16' class='inputbox' align='center'><br>
-							<label>Company Specific Risk Premium (\(RP_u\)):</label> <input type="text" id='rpu' maxlength='16' class='inputbox' align='center'><br>
-							<label>Cumulative, Nonparticipating Dividend (\(D_c\)):</label> <input type="text" id='cnd' maxlength='16' class='inputbox' align='center'><br>
-							<label>Cost of Debt from Bond Yield to Maturity (\(k_{d(pt)})\):</label> <input type="text" id='kdpt' maxlength='16' class='inputbox' align='center'><br>
+							<label>Beta (\(\beta\)):</label> <input type="text" id='beta' maxlength='16' class='inputbox'><br>
+							<label>Size Risk Premium (\(RP_s\)):</label> <input type="text" id='rps' maxlength='16' class='inputbox'><br>
+							<label>Price of Preferred Stock (\(P_{ps})\):</label> <input type="text" id='pps' maxlength='16' class='inputbox'><br>
+							<label>Industry Risk Premium (\(RP_i\)):</label> <input type="text" id='rpi' maxlength='16' class='inputbox'><br>
+							<label>Company Specific Risk Premium (\(RP_u\)):</label> <input type="text" id='rpu' maxlength='16' class='inputbox'><br>
+							<label>Cumulative, Nonparticipating Dividend (\(D_c\)):</label> <input type="text" id='cnd' maxlength='16' class='inputbox'><br>
+							<label>Cost of Debt from Bond Yield to Maturity (\(k_{d(pt)})\):</label> <input type="text" id='kdpt' maxlength='16' class='inputbox'><br>
 						</form>
 					</fieldset>
 				</div>
-			</div>
-		</li>
-			<div id="accordioncoe" class="accordion">
-				<h3>Cost of Equities</h3>
-				<div>
-					<fieldset>
-						<legend>Build Up Model Cost of Equity</legend>
-						\( k_{e(b)}= R_f+RP_e+RP_s+RP_u \) = <span id="kebum" class='output'></span><br>
-					</fieldset><br>
-					<fieldset>
-						<legend>Capital Asset Model Cost of Equity</legend>
-						\( k_{e(capm)}= R_f+\beta(RP_e)+RP_s+RP_u \) = <span id="kecapm" class='output'></span> <br>
-					</fieldset><br>
-					<fieldset>
-						<legend>Cost of Preferred Equity</legend>
-						\(k_p = D_c \div P_{ps} \) = <span id="kpe" class='output'></span> <br>
-					</fieldset><br>
-				</div>
-			</div>
-		</li>
-		</li>
-			<div id="accordionwacc" class="accordion">
-				<h3>Weighted Average Cost of Capital</h3>
-				<div>
-					<fieldset>
-						<legend>General Weighted Average Cost of Capital Formula</legend>
-						\(WACC=(k_e \times W_e)+(k_p \times W_p) + (k_{d(pt)}[1-\tau]\times W_d )\) <br>
-					</fieldset><br>
-					<fieldset>
-						<legend>WACC: Build Up Model</legend>
-						\(WACC=(k_{e(b)} \times W_e)+(k_p \times W_p) + (k_{d(pt)}[1-\tau]\times W_d )\) = <span id='waccbum' class='output'></span> <br>
-					</fieldset><br>
-					<fieldset>
-						<legend>WACC: CAPM</legend>
-						\(WACC=(k_{e(capm)} \times W_e)+(k_p \times W_p) + (k_{d(pt)}[1-\tau]\times W_d )\) = <span id='wacccapm' class='output'></span>
-					</fieldset><br>
-				</div>
-			</div>
-		</li>
-	</ul>
+			</li>
 
+			<li>
+				<div class="accordion">
 
-	<ul id="sortableicc" class="sortable">
-		<li>
-			<div id="accordioniccvar" class="accordion">
-				<h3>Implied Cost of Capital Variables</h3>
-				<div>
-					<form action="">
+					<h3>Cost of Equities</h3>
+					<div>
+
 						<fieldset>
-							<legend>Firm Variables</legend>
-							Market Equity (\(M_t\)): <input type="text" id='meq' maxlength='16' class='inputbox'><br>
-							Perpetual Growth Rate (\(\gamma\)): <input type="text" id="gamma" maxlength='16' class='inputbox'><br>
+							<legend>Build Up Model Cost of Equity</legend>
+							\( k_{e(b)}= R_f+RP_e+RP_s+RP_u \) = <span id="kebum" class='output'></span><br>
 						</fieldset><br>
+
 						<fieldset>
-							<legend>Expected Values</legend>
-							Expected Earnings (\( E_{t}[E_{t+1}]) \): <input type="text" id='eeone' maxlength='16' class='inputbox'> <br>
-							Expected Earnings (\( E_{t}[E_{t+2}]) \): <input type="text" id='eetwo' maxlength='16' class='inputbox'><br>
-							Expected Earnings (\( E_{t}[E_{t+3}]) \): <input type="text" id='eethree' maxlength='16' class='inputbox'><br>
-							Expected Earnings (\( E_{t}[E_{t+4}]) \): <input type="text" id='eefour' maxlength='16' class='inputbox'><br>
-							Expected Earnings (\( E_{t}[E_{t+5}]) \): <input type="text" id='eefive' maxlength='16' class='inputbox'><br>
-							Expected Dividends (\( E_{t}[D_{t+1}]) \): <input type="text" id='edone' maxlength='16' class='inputbox'>
-						</fieldset>
-					</form>
+							<legend>Capital Asset Model Cost of Equity</legend>
+							\( k_{e(capm)}= R_f+\beta(RP_e)+RP_s+RP_u \) = <span id="kecapm" class='output'></span> <br>
+						</fieldset><br>
+
+						<fieldset>
+							<legend>Cost of Preferred Equity</legend>
+							\(k_p = D_c \div P_{ps} \) = <span id="kpe" class='output'></span> <br>
+						</fieldset><br>
+
+					</div>
+
 				</div>
-			</div>
-		</li>
-		<li>
-			<div id="accordioniccoj" class="accordion">
-				<h3>Implied Cost of Capital: Ohlson-Juettner Model</h3>
-				<div class='equation'>
-					<fieldset>
-						<legend>Ohlson-Juettner Variables</legend>
-						\(A=0.5\left((\gamma-1)+\frac{E_{t}[D_{t+1}]}{M_{t}}\right)\) = <span id='oja' class='output'></span>
-						<br><br>
-						\(g=0.5\left(\frac{E_{t}[E_{t+3}]-E_{t}[E_{t+2}]}{E_{t}[E_{t+2}]}+\frac{E_{t}[E_{t+5}]-E_{t}[E_{t+4}]}{E_{t}[E_{t+4}]}\right)\) = <span id='ojg' class='output'></span>
-					</fieldset><br>
-					<fieldset>
-						<legend>ICC: Ohlson-Juettner Formula</legend>
-						\(ICC=A+\sqrt{A^{2}+\frac{E_{t}[E_{t+1}]}{M_t}\times(g-(\gamma-1))}\) = <span id='icc' class='output'></span>
-					</fieldset><br><br>
+			</li>
+
+			<li>
+				<div class="accordion">
+
+					<h3>Weighted Average Cost of Capital</h3>
+
+					<div>
+
+						<fieldset>
+							<legend>General Weighted Average Cost of Capital Formula</legend>
+							\(WACC=(k_e \times W_e)+(k_p \times W_p) + (k_{d(pt)}[1-\tau]\times W_d )\) <br>
+						</fieldset><br>
+
+						<fieldset>
+							<legend>WACC: Build Up Model</legend>
+							\(WACC=(k_{e(b)} \times W_e)+(k_p \times W_p) + (k_{d(pt)}[1-\tau]\times W_d )\) = <span id='waccbum' class='output'></span> <br>
+						</fieldset><br>
+
+						<fieldset>
+							<legend>WACC: CAPM</legend>
+							\(WACC=(k_{e(capm)} \times W_e)+(k_p \times W_p) + (k_{d(pt)}[1-\tau]\times W_d )\) = <span id='wacccapm' class='output'></span>
+						</fieldset><br>
+
+					</div>
 				</div>
-			</div>
-		</li>
-	</ul>
-</div>
+			</li>
+
+			<li>
+				<div class="accordion">
+
+					<h3>Implied Cost of Capital Variables</h3>
+
+					<div>
+
+						<form>
+							<fieldset>
+								<legend>Firm Variables</legend>
+								Market Equity (\(M_t\)): <input type="text" id='meq' maxlength='16' class='inputbox'><br>
+								Perpetual Growth Rate (\(\gamma\)): <input type="text" id="gamma" maxlength='16' class='inputbox'><br>
+							</fieldset><br>
+
+							<fieldset>
+								<legend>Expected Values</legend>
+								Expected Earnings (\( E_{t}[E_{t+1}]) \): <input type="text" id='eeone' maxlength='16' class='inputbox'> <br>
+								Expected Earnings (\( E_{t}[E_{t+2}]) \): <input type="text" id='eetwo' maxlength='16' class='inputbox'><br>
+								Expected Earnings (\( E_{t}[E_{t+3}]) \): <input type="text" id='eethree' maxlength='16' class='inputbox'><br>
+								Expected Earnings (\( E_{t}[E_{t+4}]) \): <input type="text" id='eefour' maxlength='16' class='inputbox'><br>
+								Expected Earnings (\( E_{t}[E_{t+5}]) \): <input type="text" id='eefive' maxlength='16' class='inputbox'><br>
+								Expected Dividends (\( E_{t}[D_{t+1}]) \): <input type="text" id='edone' maxlength='16' class='inputbox'>
+							</fieldset>
+						</form>
+
+					</div>
+				</div>
+			</li>
+
+			<li>
+				<div class="accordion">
+
+					<h3>Implied Cost of Capital: Ohlson-Juettner Model</h3>
+
+					<div class='equation'>
+
+						<fieldset>
+							<legend>Ohlson-Juettner Variables</legend>
+							\(A=0.5\left((\gamma-1)+\frac{E_{t}[D_{t+1}]}{M_{t}}\right)\) = <span id='oja' class='output'></span>
+							<br><br>
+							\(g=0.5\left(\frac{E_{t}[E_{t+3}]-E_{t}[E_{t+2}]}{E_{t}[E_{t+2}]}+\frac{E_{t}[E_{t+5}]-E_{t}[E_{t+4}]}{E_{t}[E_{t+4}]}\right)\) = <span id='ojg' class='output'></span>
+						</fieldset><br>
+
+						<fieldset>
+							<legend>ICC: Ohlson-Juettner Formula</legend>
+							\(ICC=A+\sqrt{A^{2}+\frac{E_{t}[E_{t+1}]}{M_t}\times(g-(\gamma-1))}\) = <span id='icc' class='output'></span>
+						</fieldset><br><br>
+
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
 
 
-	<script src="js/icc-calc.js"></script>
-	</body>
+	<script src="js/icc-calc.js">
+	</script>
+
+</body>
 </html>
