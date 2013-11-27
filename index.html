@@ -1,15 +1,9 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Cost of Capital Calculator</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="This is a calculator for computing cost of capital">
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 	<link rel="stylesheet" href="css/dark-hive/jquery-ui-1.10.3.custom.css" type="text/css">
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -31,7 +25,7 @@
 				</li>
 				<li>
 					<input type="radio" id="radiomicrosoft" name="radio" /><label for="radiomicrosoft">Microsoft</label>
-				</li>&nbsp
+				</li>&nbsp;
 				<li>
 					<button>Custom Calculate</button>
 				</li>
@@ -69,7 +63,6 @@
 				<div class="accordion">
 
 					<h3>Traditional Cost of Capital Variables (Sections are Sortable!)</h3>
-					<div>
 
 						<table cellpadding="5">
 							<tr>
@@ -81,19 +74,19 @@
 							<tr>
 								<td>Common Stock</td>
 								<td><input type="text" id="csct" maxlength='16' class='inputbox'></td>
-								<td id='weight'> \(W_e\) = </td>
+								<td class='weight'> \(W_e\) = </td>
 								<td id='csctweight' class='output'></td>
 							</tr>
 							<tr>
 								<td>Preferred Stock</td>
 								<td><input type="text" id='psct' maxlength='16' class='inputbox'></td>
-								<td id='weight'> \(W_p\) = </td>
+								<td class='weight'> \(W_p\) = </td>
 								<td id='psctweight' class='output'></td>
 							</tr>
 							<tr>
 								<td>Bonds</td>
 								<td><input type="text" id='bct' maxlength='16' class='inputbox'></td>
-								<td id='weight'> \(W_d\) = </td>
+								<td class='weight'> \(W_d\) = </td>
 								<td id='bctweight' class='output'></td>
 							</tr>
 						</table>
