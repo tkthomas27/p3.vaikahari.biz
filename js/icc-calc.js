@@ -201,7 +201,7 @@ $( document ).ready(function() {
 			//market return
 			$('#rpe').val(".1342");
 			//tax rate
-			$('#tax').val("0");
+			$('#tax').val(".4");
 
 
 			//size risk premium
@@ -276,7 +276,7 @@ $( document ).ready(function() {
 			$('#eefour').val("9.90");
 			$('#eefive').val("9.87");
 			$('#edone').val("16");
-			
+
 			//call the variables
 			calc();
 
@@ -332,6 +332,15 @@ $( document ).ready(function() {
 			//variable for the cost of preferred equity
 			var kpe = parseFloat(cnd/pps).toFixed(4);
 
+			var one = parseFloat(kebum*csctweight).toFixed(4);
+			var two = parseFloat(kebum*csctweight).toFixed(4);
+			var three = parseFloat(kdpt*(1-tax)*bctweight).toFixed(4);
+			var four = parseFloat(kecapm*csctweight).toFixed(4);
+			var five = parseFloat(kpe*psctweight).toFixed(4);
+			var six = parseFloat(kdpt*(1-tax)*bctweight).toFixed(4);
+
+			console.log(kebum,csctweight,kpe,psctweight,kdpt,bctweight,tax,waccbum,wacccapm,one,two,three,four,five,six);
+
 			//icc variables
 			var meq = parseFloat($('#meq').val(), 10);
 			var gamma = parseFloat($('#gamma').val(), 10);
@@ -347,22 +356,35 @@ $( document ).ready(function() {
 			var ojg = parseFloat(0.5*(((eethree-eetwo)/eetwo)+((eefive-eefour)/eefour))).toFixed(4);
 			var icc = parseFloat(oja + Math.sqrt(Math.pow(oja,2)+(eeone/meq)*(ojg-(gamma-1)))).toFixed(4);
 
+
 			if(csct<0 || psct<0 || bct<0)
 			{
 				alert("Component Totals cannot be below zero");
 				event.preventDefault();
-			}
-			if(pps<0)
-			{
-				alert('Price of Preferred Equity cannot be below zero');
-				event.preventDefault();
-
 			}
 			if(meq<=0 || eeone<=0 || eetwo<=0 || eethree<=0 || eefour<=0 || eefive<=0 || edone<=0)
 			{
 				alert("ICC variables (except growth rate) cannont be below zero");
 				event.preventDefault();
 			}
+			if (pps===0)
+			{
+				var kpe = 0;
+				var waccbum = parseFloat((kebum*csctweight)+(kdpt*(1-tax)*bctweight)).toFixed(4);
+				var wacccapm = parseFloat((kecapm*csctweight)+(kdpt*(1-tax)*bctweight)).toFixed(4);
+				$('#kpe').html(kpe);
+				$('#waccbum').html(waccbum);
+				$('#wacccapm').html(wacccapm);
+			}
+			else
+			{
+				var waccbum = parseFloat((kebum*csctweight)+(kpe*psctweight)+(kdpt*(1-tax)*bctweight)).toFixed(4);
+				var wacccapm = parseFloat((kecapm*csctweight)+(kpe*psctweight)+(kdpt*(1-tax)*bctweight)).toFixed(4);
+				$('#kpe').html(kpe);
+				$('#waccbum').html(waccbum);
+				$('#wacccapm').html(wacccapm);
+			}
+
 
 			//display the results
 			$('#csctweight').html(csctweight);
@@ -372,6 +394,9 @@ $( document ).ready(function() {
 			$('#kebum').html(kebum);
 			$('#kecapm').html(kecapm);
 			$('#kpe').html(kpe);
+
+			$('#waccbum').html(waccbum);
+			$('#wacccapm').html(wacccapm);
 
 			$('#oja').html(oja);
 			$('#ojg').html(ojg);
