@@ -2,6 +2,18 @@
 	text-align: right;
 }
 
+
+#opener{
+	font-size: 30px;
+	border-radius: 15px;
+	font-weight: bold;
+	color: #222;
+	text-shadow: 0px 2px 3px #555;
+	background-color:#3BBCD9;
+	border:1px solid white;
+}
+
+
 .sortable{
 	list-style-type: none;
 }
@@ -35,6 +47,7 @@ table,th,td
 input{
 	color:#0A1C24;
 	background-color: #3BBCD9;
+	border-radius: 5px;
 }
 
 .nav {
