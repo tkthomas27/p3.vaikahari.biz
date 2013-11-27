@@ -25,9 +25,9 @@
 				</li>
 				<li>
 					<input type="radio" id="radiomicrosoft" name="radio" /><label for="radiomicrosoft">Microsoft</label>
-				</li>&nbsp;
+				</li>
 				<li>
-					<button>Custom Calculate</button>
+					&nbsp;<button>Custom Calculate</button>
 				</li>
 			</ul>
 		</div>
@@ -64,7 +64,8 @@
 
 					<h3>Traditional Cost of Capital Variables (Sections are Sortable!)</h3>
 
-						<table cellpadding="5">
+					<div>
+						<table>
 							<tr>
 								<th>Component</th>
 								<th>Component Total (<i>in Bil</i>)</th>
@@ -93,29 +94,28 @@
 
 					<br><br>
 
-					<fieldset>
-						<legend>General Variables</legend>
-						<form>
-							<label>Tax Rate (\(\tau\)):</label> <input type="text" id='tax' maxlength='16' class='inputbox'><br>
-							<label>Risk Free Rate (\(R_f\)):</label> <input type="text" id='rf' maxlength='16' class='inputbox'><br>
-							<label>Equity Risk Premium (\(RP_e\)):</label> <input type="text" id='rpe' maxlength='16' class='inputbox'><br>
-						</form>
-					</fieldset>
+						<fieldset>
+							<legend>General Variables</legend>
+							<form>
+								<label>Tax Rate (\(\tau\)):</label> <input type="text" id='tax' maxlength='16' class='inputbox'><br>
+								<label>Risk Free Rate (\(R_f\)):</label> <input type="text" id='rf' maxlength='16' class='inputbox'><br>
+								<label>Equity Risk Premium (\(RP_e\)):</label> <input type="text" id='rpe' maxlength='16' class='inputbox'><br>
+							</form>
+						</fieldset>
 
 					<br>
 
-					<fieldset>
-						<legend>Company Specific Variables</legend>
-						<form>
-							<label>Beta (\(\beta\)):</label> <input type="text" id='beta' maxlength='16' class='inputbox'><br>
-							<label>Size Risk Premium (\(RP_s\)):</label> <input type="text" id='rps' maxlength='16' class='inputbox'><br>
-							<label>Price of Preferred Stock (\(P_{ps})\):</label> <input type="text" id='pps' maxlength='16' class='inputbox'><br>
-							<label>Industry Risk Premium (\(RP_i\)):</label> <input type="text" id='rpi' maxlength='16' class='inputbox'><br>
-							<label>Company Specific Risk Premium (\(RP_u\)):</label> <input type="text" id='rpu' maxlength='16' class='inputbox'><br>
-							<label>Cumulative, Nonparticipating Dividend (\(D_c\)):</label> <input type="text" id='cnd' maxlength='16' class='inputbox'><br>
-							<label>Cost of Debt from Bond Yield to Maturity (\(k_{d(pt)})\):</label> <input type="text" id='kdpt' maxlength='16' class='inputbox'><br>
-						</form>
-					</fieldset>
+						<fieldset>
+							<legend>Company Specific Variables</legend>
+								<label>Beta (\(\beta\)):</label> <input type="text" id='beta' maxlength='16' class='inputbox'><br>
+								<label>Size Risk Premium (\(RP_s\)):</label> <input type="text" id='rps' maxlength='16' class='inputbox'><br>
+								<label>Price of Preferred Stock (\(P_{ps})\):</label> <input type="text" id='pps' maxlength='16' class='inputbox'><br>
+								<label>Industry Risk Premium (\(RP_i\)):</label> <input type="text" id='rpi' maxlength='16' class='inputbox'><br>
+								<label>Company Specific Risk Premium (\(RP_u\)):</label> <input type="text" id='rpu' maxlength='16' class='inputbox'><br>
+								<label>Cumulative, Nonparticipating Dividend (\(D_c\)):</label> <input type="text" id='cnd' maxlength='16' class='inputbox'><br>
+								<label>Cost of Debt from Bond Yield to Maturity (\(k_{d(pt)})\):</label> <input type="text" id='kdpt' maxlength='16' class='inputbox'><br>
+						</fieldset>
+					</div>
 				</div>
 			</li>
 
@@ -177,25 +177,21 @@
 					<h3>Implied Cost of Capital Variables</h3>
 
 					<div>
+						<fieldset>
+							<legend>Firm Variables</legend>
+							Market Equity (\(M_t\)): <input type="text" id='meq' maxlength='16' class='inputbox'><br>
+							Perpetual Growth Rate (\(\gamma\)): <input type="text" id="gamma" maxlength='16' class='inputbox'><br>
+						</fieldset><br>
 
-						<form>
-							<fieldset>
-								<legend>Firm Variables</legend>
-								Market Equity (\(M_t\)): <input type="text" id='meq' maxlength='16' class='inputbox'><br>
-								Perpetual Growth Rate (\(\gamma\)): <input type="text" id="gamma" maxlength='16' class='inputbox'><br>
-							</fieldset><br>
-
-							<fieldset>
-								<legend>Expected Values</legend>
-								Expected Earnings (\( E_{t}[E_{t+1}]) \): <input type="text" id='eeone' maxlength='16' class='inputbox'> <br>
-								Expected Earnings (\( E_{t}[E_{t+2}]) \): <input type="text" id='eetwo' maxlength='16' class='inputbox'><br>
-								Expected Earnings (\( E_{t}[E_{t+3}]) \): <input type="text" id='eethree' maxlength='16' class='inputbox'><br>
-								Expected Earnings (\( E_{t}[E_{t+4}]) \): <input type="text" id='eefour' maxlength='16' class='inputbox'><br>
-								Expected Earnings (\( E_{t}[E_{t+5}]) \): <input type="text" id='eefive' maxlength='16' class='inputbox'><br>
-								Expected Dividends (\( E_{t}[D_{t+1}]) \): <input type="text" id='edone' maxlength='16' class='inputbox'>
-							</fieldset>
-						</form>
-
+						<fieldset>
+							<legend>Expected Values</legend>
+							Expected Earnings (\( E_{t}[E_{t+1}]) \): <input type="text" id='eeone' maxlength='16' class='inputbox'> <br>
+							Expected Earnings (\( E_{t}[E_{t+2}]) \): <input type="text" id='eetwo' maxlength='16' class='inputbox'><br>
+							Expected Earnings (\( E_{t}[E_{t+3}]) \): <input type="text" id='eethree' maxlength='16' class='inputbox'><br>
+							Expected Earnings (\( E_{t}[E_{t+4}]) \): <input type="text" id='eefour' maxlength='16' class='inputbox'><br>
+							Expected Earnings (\( E_{t}[E_{t+5}]) \): <input type="text" id='eefive' maxlength='16' class='inputbox'><br>
+							Expected Dividends (\( E_{t}[D_{t+1}]) \): <input type="text" id='edone' maxlength='16' class='inputbox'>
+						</fieldset>
 					</div>
 				</div>
 			</li>

@@ -4,13 +4,13 @@
 
 
 #opener{
+	font-family: sans-serif;
 	font-size: 30px;
-	border-radius: 15px;
-	font-weight: bold;
+	text-align: center;
 	color: #222;
 	text-shadow: 0px 2px 3px #555;
-	background-color:#3BBCD9;
-	border:1px solid white;
+	font-weight: bold;
+	background-color: #45484d;
 }
 
 
@@ -38,6 +38,14 @@
 table,th,td
 {
 	border:1px solid white;
+}
+
+td{
+	padding:5px;
+}
+
+th{
+	padding:5;
 }
 
 .output{
