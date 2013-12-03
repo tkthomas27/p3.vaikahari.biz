@@ -49,6 +49,7 @@ $( document ).ready(function() {
 
 		$( "#dialog" ).dialog({
 			autoOpen: false,
+			width: 500,
 			show: {
 				effect: "blind",
 				duration: 1000
@@ -64,6 +65,13 @@ $( document ).ready(function() {
 		});
 	});
 
+	//modifies animation used below in if statements - used in order to draw attention to incorrect fields
+	$.fn.animateHighlight = function(highlightColor, duration) {
+		var highlightBg = highlightColor || "#FFFF9C";
+		var animateMs = duration || 1500;
+		var originalBg = this.css("backgroundColor");
+		this.stop().css("background-color", highlightBg).animate({backgroundColor: originalBg}, animateMs);
+	};
 
 	//************************************************************************************************************************************
 	//functionality
@@ -149,6 +157,7 @@ $( document ).ready(function() {
 			if(csct<0 || psct<0 || bct<0)
 			{
 				alert("Component Totals cannot be below zero");
+				$("#divcomponents").animateHighlight("#dd0000", 1000);
 				return false;
 			}
 
@@ -156,6 +165,7 @@ $( document ).ready(function() {
 			if(csct===0 && psct===0 && bct===0)
 			{
 				alert("One component must be above zero!");
+				$("#divcomponents").animateHighlight("#dd0000", 1000);
 				return false;
 			}
 
@@ -163,6 +173,8 @@ $( document ).ready(function() {
 			if(meq<=0 || eeone<=0 || eetwo<=0 || eethree<=0 || eefour<=0 || eefive<=0 || edone<=0)
 			{
 				alert("ICC variables (except growth rate) cannot be below zero");
+				$("#iccvarsone").animateHighlight("#dd0000", 1000);
+				$("#iccvarstwo").animateHighlight("#dd0000", 1000);
 				return false;
 			}
 
