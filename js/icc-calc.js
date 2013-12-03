@@ -49,7 +49,7 @@ $( document ).ready(function() {
 
 		$( "#dialog" ).dialog({
 			autoOpen: false,
-			width: 500,
+			width: 600,
 			show: {
 				effect: "blind",
 				duration: 1000
