@@ -25,8 +25,6 @@ $( document ).ready(function() {
 			placeholder: "ui-state-highlight",
 		});
 
-		$( ".sortable" ).disableSelection();
-
 	});
 
 
@@ -148,7 +146,8 @@ $( document ).ready(function() {
 			var icc = parseFloat(oja + Math.sqrt(Math.pow(oja,2)+(eeone/meq)*(ojg-(gamma-1)))).toFixed(4);
 
 			//prevent blanks from being input
-			if(!$(".inputbox").val()){
+			if($.trim($("#csct").val()) === "" || $.trim($("#psct").val()) === "" || $.trim($("#bct").val()) === "" || $.trim($("#rf").val()) === "" || $.trim($("#rpe").val()) === "" || $.trim($("#tax").val()) === "" || $.trim($("#rps").val()) === "" || $.trim($("#rpi").val()) === "" || $.trim($("#rpu").val()) === "" || $.trim($("#beta").val()) === "" || $.trim($("#cnd").val()) === "" || $.trim($("#pps").val()) === "" || $.trim($("#kdpt").val()) === "" || $.trim($("#meq").val()) === "" || $.trim($("#gamma").val()) === "" || $.trim($("#eeone").val()) === "" || $.trim($("#eetwo").val()) === "" || $.trim($("#eethree").val()) === "" || $.trim($("#eefour").val()) === "" || $.trim($("#eefive").val()) === "" || $.trim($("#edone").val()) === "")
+			{
 				alert("Blanks are not allowed");
 				return false;
 			}
